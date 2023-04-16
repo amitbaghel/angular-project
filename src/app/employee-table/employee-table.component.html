@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="filter-controls">
+      <!-- <input [(ngModel)]="filterText" placeholder="Filter by name" /> -->
+      
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Job</th>
+          <th>Age</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>
+            Actions
+            <button (click)="addRow()">Add Row</button>
+           </th>
+        </tr>
+        <tr>
+          <th>
+            <input [(ngModel)]="nameFilter" placeholder="Filter by name" />
+          </th>
+          <th>
+            <select [(ngModel)]="jobFilter" >
+                <option value=""></option>
+                <option value="Software Developer">Software Developer</option>
+                <option value="Project Manager">Project Manager</option>
+                <option value="UX Designer">UX Designer</option>
+              </select>
+          </th>
+          <th>
+            <input [(ngModel)]="ageFilter" placeholder="Filter by age" />
+          </th>
+          <th>
+            <input type="date" [(ngModel)]="startDateFilter"  />
+          </th>
+          <th>
+            <input type="date" [(ngModel)]="endDateFilter"  />
+          </th>
+          <th>
+            <button (click)="applyFilter()">Filter</button>
+            <button (click)="resetFilter()">Clear</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of filteredEmployees">
+          <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+          <td>{{ employee.job }}</td>
+          <td>{{ employee.age }}</td>
+          <td>{{ employee.startDate | date: 'shortDate' }}</td>
+          <td *ngIf="employee.endDate">{{ employee.endDate | date: 'shortDate' }}</td>
+          <td *ngIf="!employee.endDate">Currently Working</td>
+          <td>
+            <button (click)="viewDetail(employee)">View Detail</button>
+            <button (click)="deleteEmployee(employee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Add the employee-dialog component here and handle its opening and closing with *ngIf -->
+</div>
+
+  
+  <app-employee-dialog *ngIf="selectedEmployee" [employee]="selectedEmployee" (closeDialog)="closeDialog()" (updateEmployee)="updateEmployee($event)"></app-employee-dialog>
+ 

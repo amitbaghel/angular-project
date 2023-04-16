@@ -1,0 +1,41 @@
+
+<div class="modal-overlay" (click)="closeDialog.emit()">
+    <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <ng-container class="container1">
+        <label>
+          First Name:
+          <input type="text" [(ngModel)]="employee.firstName" name="firstName" required />
+        </label>
+        <label>
+          Last Name:
+          <input type="text" [(ngModel)]="employee.lastName" name="lastName" required />
+        </label>
+        <label>
+          Job:
+          <select [(ngModel)]="employee.job">
+            <option value="Software Developer">Software Developer</option>
+            <option value="Project Manager">Project Manager</option>
+            <option value="UX Designer">UX Designer</option>
+          </select>
+        </label>
+        <label>
+          Age:
+          <input type="number" [(ngModel)]="employee.age" name="age" required />
+        </label>
+        <label>
+          Start Date: 
+          <input type="date" [(ngModel)]="startDateString"/>
+        </label>
+        <label>
+          End Date:
+          <input type="date" [(ngModel)]="endDateString" />
+        </label>
+        <div class="buttons">
+          <button (click)="onSubmit()" type="submit">Save</button>
+          <button type="button" (click)="closeDialog.emit()">Cancel</button>
+        </div>
+    </ng-container>
+    </div>
+  </div>
+
+  
